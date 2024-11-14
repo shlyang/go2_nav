@@ -1,4 +1,6 @@
 devel/
+install/
+log/
 logs/
 build/
 bin/
@@ -51,3 +53,5 @@ qtcreator-*
 CATKIN_IGNORE
 
 .vscode/
+__pycache__/
+resource/
