@@ -1,8 +1,6 @@
 import time
 import sys
 from unitree_sdk2py.core.channel import ChannelFactoryInitialize
-from unitree_sdk2py.idl.default import unitree_go_msg_dds__SportModeState_
-from unitree_sdk2py.idl.unitree_go.msg.dds_ import SportModeState_
 from unitree_sdk2py.go2.sport.sport_client import SportClient
 from unitree_sdk2py.go2.obstacles_avoid.obstacles_avoid_client import ObstaclesAvoidClient
 
@@ -40,13 +38,13 @@ class AtomAction:
         """平衡站立"""
         self.sport_client.BalanceStand()
         print("Balance standing...")
-        time.sleep(1.0)
+        # time.sleep(1.0)
         
     def recovery_stand(self):
         """恢复站立姿态"""
         self.sport_client.RecoveryStand()
         print("Recovery standing...")
-        time.sleep(1.0)
+        # time.sleep(1.0)
         
     def damp(self):
         """阻尼模式"""
@@ -63,19 +61,8 @@ class AtomAction:
             duration (float): 移动持续时间(秒)
         """
         self.avoid_client.Move(vx, vy, vyaw)
-        time.sleep(duration)
-        try:
-            # 执行移动
-            
-            
-            # 停止移动
-            self.avoid_client.Move(0.0, 0.0, 0.0)
-            self.avoid_client.UseRemoteCommandFromApi(False)
-            
-        except Exception as e:
-            print(f"Error during avoid move: {e}")
-            self.avoid_client.Move(0.0, 0.0, 0.0)
-            self.avoid_client.UseRemoteCommandFromApi(False)
+        # time.sleep(duration)
+        print("Obstacle avoidance moving with {}, {}, {}".format(vx, vy, vyaw))
             
     def move(self, vx, vy, vyaw, duration=1.0):
         """简单移动(不带避障)
@@ -87,12 +74,13 @@ class AtomAction:
             duration (float): 移动持续时间(秒)
         """
         self.sport_client.Move(vx, vy, vyaw)
-        time.sleep(duration)
+        # time.sleep(duration)
 
     def stop(self):
         """停止移动"""
         self.sport_client.StopMove()
         self.avoid_client.Move(0.0, 0.0, 0.0)
+        print("Stopping...")
         # self.avoid_client.UseRemoteCommandFromApi(False)
         
 # 示例使用
