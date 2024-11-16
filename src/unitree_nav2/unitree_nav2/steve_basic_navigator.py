@@ -139,8 +139,8 @@ class BasicNavigator(Node):
         return self.status
 
     def waitUntilNav2Active(self):
-        self._waitForNodeToActivate('amcl')
-        self._waitForInitialPose()
+        # self._waitForNodeToActivate('amcl')
+        # self._waitForInitialPose()
         self._waitForNodeToActivate('bt_navigator')
         self.info('Nav2 is ready for use!')
         return

@@ -28,6 +28,7 @@ setup(
     entry_points={
         'console_scripts': [
              'navigation_to_pose = unitree_nav2.navigation_to_pose:main',
+             'navigation_to_pose2 = unitree_nav2.navigation_to_pose2:main',
         ],
     },
 )
