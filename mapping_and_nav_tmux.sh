@@ -61,11 +61,11 @@ tmux select-pane -t 2
 tmux send-keys '2' C-m
 tmux send-keys 'cd /home/unitree/navi_ws' C-m
 tmux send-keys 'source install/setup.bash' C-m
-tmux send-keys 'ros2 run unitree_nav2 navigation_to_pose  --ros-args --log-level debug' C-m
+tmux send-keys 'ros2 run unitree_nav2 navigation_to_pose2 --ros-args --log-level debug' C-m
 
 tmux select-pane -t 3
-tmux send-keys '1' C-m
-tmux send-keys 'rostopic echo /cmd_vel' C-m
+tmux send-keys '2' C-m
+tmux send-keys 'ros2 topic echo /cmd_vel' C-m
 
 
 # 创建第三个窗口 (索引 2)

@@ -37,6 +37,7 @@ class KeyboardControl:
         print("w/s: 前进/后退")
         print("a/d: 左移/右移")
         print("q/e: 左转/右转")
+        print("v: 导航模式")
         print("f: 停止")
         print("r: 恢复站立")
         print("Ctrl+C: 退出")
