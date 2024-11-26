@@ -46,17 +46,17 @@ class KeyboardControl:
             ch = self.get_keyboard_input()
             
             if ch == 'w':
-                self.atomic_action.move_with_avoid(0.3, 0, 0)
+                self.atomic_action.move_with_avoid(0.15, 0, 0)
             elif ch == 's':
-                self.atomic_action.move_with_avoid(-0.3, 0, 0)
+                self.atomic_action.move_with_avoid(-0.15, 0, 0)
             elif ch == 'a':
-                self.atomic_action.move_with_avoid(0, 0.3, 0)
+                self.atomic_action.move_with_avoid(0, 0.15, 0)
             elif ch == 'd':
-                self.atomic_action.move_with_avoid(0, -0.3, 0)
+                self.atomic_action.move_with_avoid(0, -0.15, 0)
             elif ch == 'q':
-                self.atomic_action.move_with_avoid(0, 0, 0.3)
+                self.atomic_action.move_with_avoid(0, 0, 0.5)
             elif ch == 'e':
-                self.atomic_action.move_with_avoid(0, 0, -0.3)
+                self.atomic_action.move_with_avoid(0, 0, -0.5)
             elif ch == 'f':
                 self.atomic_action.stop()
             elif ch == 'r':

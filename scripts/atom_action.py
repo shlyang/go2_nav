@@ -74,6 +74,7 @@ class AtomAction:
             duration (float): 移动持续时间(秒)
         """
         self.sport_client.Move(vx, vy, vyaw)
+        print("Moving with {}, {}, {}".format(vx, vy, vyaw))
         # time.sleep(duration)
 
     def stop(self):

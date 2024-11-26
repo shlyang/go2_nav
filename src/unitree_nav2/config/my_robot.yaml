@@ -3,7 +3,7 @@ bt_navigator:
     use_sim_time: False
     global_frame: map
     robot_base_frame: base_link
-    odom_topic: /dog_odom
+    odom_topic: /utlidar/robot_odom
     # odom_topic: /lio_sam_ros2/mapping/odometry
     # odom_topic: lio_sam_ros2/mapping/re_location_odometry
     default_bt_xml_filename: "navigate_w_replanning_and_recovery.xml"
@@ -42,7 +42,7 @@ controller_server:
     min_x_velocity_threshold: 0.001
     min_y_velocity_threshold: 0.5
     min_theta_velocity_threshold: 0.001
-    odom_topic: /dog_odom
+    odom_topic: /utlidar/robot_odom
     # odom_topic: /lio_sam_ros2/mapping/odometry
     # odom_topic: lio_sam_ros2/mapping/re_location_odometry
     # progress_checker_plugin: "progress_checker"
@@ -114,7 +114,7 @@ local_costmap:
   local_costmap:
     ros__parameters:
       update_frequency: 10.0 #5.0
-      publish_frequency: 5.0 #2.0
+      publish_frequency: 10.0 # 5.0 #2.0
       global_frame: map
       robot_base_frame: base_link
       use_sim_time: False
@@ -130,15 +130,15 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.55 # 0.55
+        inflation_radius: 0.1 # 0.55
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
         publish_voxel_map: True
         observation_sources: rslidar_p
         rslidar_p:
-          # topic: /rslidar_points
-          topic: /lio_sam_ros2/deskew/cloud_deskewed
+          topic: /rslidar_points
+          # topic: /lio_sam_ros2/deskew/cloud_deskewed
           max_obstacle_height: 0.1
           clearing: True
           marking: True
@@ -174,8 +174,8 @@ global_costmap:
         enabled: True
         observation_sources: rslidar_p
         rslidar_p:
-          # topic: /rslidar_points
-          topic: /lio_sam_ros2/deskew/cloud_deskewed
+          topic: /rslidar_points
+          # topic: /lio_sam_ros2/deskew/cloud_deskewed
           max_obstacle_height: 0.1
           clearing: True
           marking: True
@@ -183,11 +183,12 @@ global_costmap:
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         map_subscribe_transient_local: True
-        map_topic: /lio_sam_ros2/mapping/map
+        map_topic: /map
+
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.35 #0.3S
+        inflation_radius: 0.15 #0.3S
       always_send_full_costmap: True
   global_costmap_client:
     ros__parameters:
@@ -200,6 +201,9 @@ map_server:
   ros__parameters:
     use_sim_time: False
     # yaml_filename: "map.yaml"
+    # yaml_filename: ""
+    topic_name: "/map"
+    frame_id: "map"
 
 map_saver:
   ros__parameters:
@@ -255,7 +259,7 @@ planner_server:
       #       max_line_search_step_expansion: 50
     GridBased:
       plugin: "nav2_navfn_planner/NavfnPlanner"
-      tolerance: 0.5 #0.2 tolerance
+      tolerance: 1.0 #0.5 #0.2 tolerance
       use_astar: false
       allow_unknown: false
 
