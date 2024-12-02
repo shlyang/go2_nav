@@ -16,7 +16,9 @@ class NavToPoseNode(Node):
     def __init__(self, name):
         super().__init__(name)
         self.sub = self.create_subscription(PoseStamped, "nav_to_pose", self._navToPose_callback, 10)
-        self.pub = self.create_publisher(NavState,"nav_state",10)
+        # self.pub = self.create_publisher(NavState,"nav_state",10)
+        self.pub = self.create_publisher(String,"nav_state",10)
+        
         
         try:
             # 直接创建导航动作客户端
@@ -73,21 +75,22 @@ class NavToPoseNode(Node):
         result_future.add_done_callback(self._get_result_callback)
 
     def _get_result_callback(self, future):
-        nav_state_msg = NavState()
+        # nav_state_msg = NavState()
+        nav_state_msg = String()
         status = future.result().status
         print('status: ', status)
         if status == GoalStatus.STATUS_SUCCEEDED:
             self.get_logger().info('导航成功！')
-            nav_state_msg.state = "nav_succeed"
+            nav_state_msg.data = "nav_succeed"
         elif status == GoalStatus.STATUS_CANCELED:
             self.get_logger().info('导航被取消！')
-            nav_state_msg.state = "nav_interrupt"
+            nav_state_msg.data = "nav_interrupt"
         elif status == GoalStatus.STATUS_ABORTED:
             self.get_logger().info('导航失败！')
-            nav_state_msg.state = "nav_failed"
+            nav_state_msg.data = "nav_failed"
         else:
             self.get_logger().info('导航状态未知！')
-            nav_state_msg.state = "nav_missed"
+            nav_state_msg.data = "nav_missed"
 
         self.pub.publish(nav_state_msg)
 

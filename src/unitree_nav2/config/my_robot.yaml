@@ -104,8 +104,6 @@ controller_server:
       Oscillation.oscillation_reset_dist: 0.10   #0.05 
       Oscillation.oscillation_reset_angle: 0.4   #0.2  
 
-
-
 controller_server_rclcpp_node:
   ros__parameters:
     use_sim_time: False
@@ -152,8 +150,6 @@ local_costmap:
   local_costmap_rclcpp_node:
     ros__parameters:
       use_sim_time: False
-
-
 
 global_costmap:
   global_costmap:

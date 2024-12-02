@@ -9,7 +9,9 @@ class OdomTFPublisher(Node):
     def __init__(self):
         super().__init__("odom_tf_publisher")
         self.broadcaster = TransformBroadcaster(self)
-        self.odom_sub = self.create_subscription(Odometry, "/utlidar/robot_odom", self.odom_callback, 10)
+        self.odom_topic = "/utlidar/robot_odom"
+        self.odom_sub = self.create_subscription(Odometry, self.odom_topic, self.odom_callback, 10)
+        print("subscribe" + self.odom_topic)
 
     def odom_callback(self, msg):
         t = TransformStamped()

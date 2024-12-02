@@ -26,7 +26,7 @@ class KeyboardControl:
         vx = twist.linear.x
         vy = twist.linear.y
         wz = twist.angular.z
-        self.atomic_action.move_with_avoid(vx, vy, wz)
+        self.atomic_action.move(vx, vy, wz)
 
     def run(self):
         """主运行循环"""
@@ -40,6 +40,7 @@ class KeyboardControl:
         print("v: 导航模式")
         print("f: 停止")
         print("r: 恢复站立")
+        print("v: 监听cmd_vel（ROS1）")
         print("Ctrl+C: 退出")
 
         while not rospy.is_shutdown():
