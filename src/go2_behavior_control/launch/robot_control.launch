@@ -1,0 +1,9 @@
+<launch>
+    <!-- 加载配置文件 -->
+    <rosparam command="load" file="$(find robot_control)/config/keyboard_map.yaml" />
+    
+    <!-- 启动主节点 -->
+    <node name="robot_controller" pkg="robot_control" type="robot_controller.py" output="screen">
+        <param name="control_rate" value="100" />
+    </node>
+</launch> 

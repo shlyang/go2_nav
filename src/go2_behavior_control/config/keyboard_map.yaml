@@ -1,0 +1,19 @@
+state_commands:
+  '1': 'PASSIVE'
+  '2': 'FIXEDSTAND'
+  '3': 'HIGHCMD'
+  '4': 'NAVIGATE'
+
+movement_commands:
+  'w': [0.15, 0, 0]
+  's': [-0.15, 0, 0]
+  'a': [0, 0.15, 0]
+  'd': [0, -0.15, 0]
+  'q': [0, 0, 0.5]
+  'e': [0, 0, -0.5]
+
+action_commands:
+  'f': 'stop'
+  'r': 'recovery_stand'
+  'z': 'stand_up'
+  'c': 'stand_down' 
